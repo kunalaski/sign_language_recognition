@@ -1,5 +1,6 @@
 # Sign Language Recognition using Convolution Neural Network
 
+## Problem Statement 
 The goal of this problem statement is to develop a system that captures the image through the live webcam only if a particular gesture is present and give the text or letter associated with the gesture. The system shall accept input of a static gesture through the webcam, preprocess the image, feed it to the CNN model and display the text as an output. The system only gives output for the ASL fingerspelling. Our problem consists of three tasks to be done in real time:
 1. Obtaining video of the user signing (input).
 2. Classifying each frame in the video to a letter.
@@ -15,59 +16,6 @@ The system shall recognize the specified letter through the webcam. It shall als
 convert the entire sentence into speech, and also translate the sentence in the specified language and that into speech too. The aim of this problem statement is to close the
 communication gap faced by the people with hearing and speech disability. The proposed system is limited to static gestures which can only recognize ASL fingerspelling but can be later updated for ISL, JSL and also dynamic hand gesture and two hand gestures.
 
-## Implementation Details
-The system is implemented entirely with python. Tkinter is used to implement the
-GUI.The input image is preprocessed using one of the many image processing and
-computer vision libraries supported by python: OpenCV. The CNN model is implemented
-using tensorflow and keras library.
-The steps followed for implementation:
-1. Dataset Generation:
-Due to the lack of availability of the raw images of ASL fingerspelling matching
-the preferred requirement database was created using opencv and python. 6000
-images for the 29 classes which includes alphabet a to z, custom gestures for space
-and full stop were captured using python open cv and webcam. The 6000 images
-for each class were divided into 3 sets of hands each containing 2000 images to
-avoid overfitting. Total 174000 images are contained in the dataset. The images are
-preprocessed while capturing hence the dataset contains preprocessed images.
-
-![image](https://user-images.githubusercontent.com/47791109/122280940-586a1500-cf07-11eb-9392-677e9baecb0e.png)
-
-1. Create train and test data:
-The dataset created is divided into train and test data. Pickle files for test, train
-images and train, test label is created. The train pickle files contain 144919.
-Images and the test pickle files contain 14492 images.
-2. The gestures present in the dataset: ![image](https://user-images.githubusercontent.com/47791109/122281000-6ae44e80-cf07-11eb-82b9-b96e234d1876.png)
-
-3. Train the CNN model:
-The data is trained in convolution neural networks using keras. Convolutional
-neural networks (ConvNets or CNNs) are more often utilized for classification and
-computer vision tasks. Prior to CNNs, manual, time-consuming feature extraction
-methods were used to identify objects in images. However, convolutional neural
-networks now provide a more scalable approach to image classification and object
-recognition tasks, leveraging principles from linear algebra, specifically matrix
-multiplication, to identify patterns within an image. That said, they can be
-computationally demanding, requiring graphical processing units (GPUs) to train
-models.
-The architecture of the CNN model used to train the dataset: ![image](https://user-images.githubusercontent.com/47791109/122281058-79326a80-cf07-11eb-803b-cf611429e672.png)
-
-4. Implementing GUI:
-The GUI is implemented using Python tkinter.
-5. Implementing Sentence formation:
-The output section is divided into 4 parts, predicted letter, word, sentence and
-translated sentence.
-If the accuracy returned by the model for the particular frame is greater then 96
-only then the predicted class is returned. When a predicted class is returned the
-counter for that class in the dictionary is incremented by 1. When the counter of the
-specific class becomes ten that class letter is displayed in the predicted letter
-section and that letter is appended to the word and the dictionary is cleared. When
-the custom gesture for space gesture is used the word is appended to the sentence.
-6. Implementing text to speech:
-The recognized text and the sentence formed can be given output in the speech
-form using pyttx library of python. 15
-7. Language translator:
-A language translator is implemented using python googletrans library. The
-translated sentence is converted to speech using the python’s playsound library.
-
 ## Result and Analysis
 The Sign Language Recognition using CNN is implemented as a desktop application. The
 title window has two options to start the Sign Language Recognition application or to set
@@ -77,8 +25,6 @@ the skin masking
 
 Skin masking allows the user to set the histogram for skin masking according to the
 features of its skin color.
-
-![image](https://user-images.githubusercontent.com/47791109/122280105-75521880-cf06-11eb-84f9-934f9fe3f2b1.png)
 
 ![image](https://user-images.githubusercontent.com/47791109/122280156-8733bb80-cf06-11eb-8f55-4ea8422d7b42.png)
 
@@ -108,10 +54,6 @@ only a computer and a webcam.
 Below is the classification report of the testing process:
 
 ![image](https://user-images.githubusercontent.com/47791109/122280380-c235ef00-cf06-11eb-8134-d9ea25b0a88e.png)
-
-Where,
-
-![image](https://user-images.githubusercontent.com/47791109/122280434-d0840b00-cf06-11eb-940e-763cdbece06a.png)
 
 Below is the confusion matrix of our result:
 
